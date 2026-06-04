@@ -119,11 +119,12 @@ h2.section-title {
 /* ---------- nav ---------- */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 60;
-  transition: background .25s ease, box-shadow .25s ease, border-color .25s ease, padding .25s ease;
+  background: rgba(244,241,234,0.92); backdrop-filter: blur(12px) saturate(1.3);
   border-bottom: 1px solid transparent;
+  transition: background .25s ease, box-shadow .25s ease, border-color .25s ease, padding .25s ease;
 }
 .nav.scrolled {
-  background: rgba(244,241,234,0.82); backdrop-filter: blur(14px) saturate(1.4);
+  background: rgba(244,241,234,0.96); backdrop-filter: blur(16px) saturate(1.5);
   border-bottom-color: var(--line);
 }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 74px; transition: height .25s ease; }
@@ -350,6 +351,7 @@ h2.section-title {
 @media (max-width: 940px) {
   .nav-links, .nav-cta .btn { display: none; }
   .nav-toggle { display: inline-flex; }
+  .hero { padding-top: 108px; }
   .hero-grid { grid-template-columns: 1fr; gap: 48px; }
   .hero-visual { max-width: 460px; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
