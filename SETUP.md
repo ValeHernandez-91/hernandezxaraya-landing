@@ -134,10 +134,37 @@ Cuando quieras activar pagos, avísame y lo integramos.
 
 ## Checklist rápido
 
-- [ ] Fase 1 — Dominio apuntando a Cloudflare (Active)
-- [ ] Fase 2 — `hola@` llega a tu Gmail
-- [ ] Fase 3 — Sitio publicado en `hernandezxaraya.cl`
-- [ ] Fase 4 — Access Key de Web3Forms puesto y formulario probado
-- [ ] Fase 5 — Responder como `hola@` desde Gmail
+- [x] Fase 1 — Dominio apuntando a Cloudflare (Active). NS: athena/rajeev.ns.cloudflare.com
+- [x] Fase 2 — `hola@` llega a tu Gmail (Email Routing activo, MX+SPF publicados)
+- [x] Fase 3 — Sitio publicado y online en https://hernandezxaraya.cl (HTTPS OK)
+- [x] Fase 4 — Web3Forms conectado y formulario probado (leads llegan al Gmail)
+- [ ] Fase 5 — Responder como `hola@` desde Gmail (PENDIENTE, ver nota abajo)
 - [ ] Fase 6 — Link de Cal.com creado y puesto en el sitio
 - [ ] Fase 7 — (Opcional) Pagos online
+
+---
+
+## Dónde quedamos (retomar aquí)
+
+**Funcionando hoy:** sitio online con dominio + HTTPS, recibe correo en `hola@`, y el formulario manda leads.
+
+**Pendiente — Fase 5 (responder como `hola@`):**
+- Cuenta Brevo creada. SMTP probado: servidor `smtp-relay.brevo.com`, puerto `587`,
+  login `aee1a4001@smtp-brevo.com`. La clave SMTP funciona (el envío devolvió `250`).
+- **Problema:** el correo de prueba no llegó al Gmail. Causa probable: cuenta nueva de Brevo
+  retenida/en revisión, y/o falta autenticar el dominio (sin SPF/DKIM de Brevo → spam).
+- **Próximos pasos mañana:**
+  1. Revisar **Brevo → Transaccional → Logs** para ver si salió "Delivered" (revisar Spam) o "Blocked".
+  2. Autenticar el dominio en **Brevo → Remitentes, Dominios e IPs** → agregar `hernandezxaraya.cl`
+     → copiar los registros (brevo-code TXT, DKIM, SPF/DMARC) y agregarlos en Cloudflare DNS.
+  3. Terminar en Gmail: **Configuración → Cuentas e importación → Enviar como** con los datos SMTP de arriba.
+- **Alternativa si Brevo sigue dando lata:** Zoho Mail (plan gratis) = buzón propio que recibe y envía
+  sin SMTP externo. Más simple, bandeja aparte del Gmail.
+
+**Pendiente — Fase 6 (agenda):** crear cuenta en Cal.com y poner el link real en `index.html`
+(botón "Reservar una reunión", hoy apunta a `https://cal.com/hernandezxaraya`).
+
+**Nota deploy:** el sitio se publicó por **subida directa** (archivo `hernandezxaraya-site.zip`),
+no por Git, porque la app de Cloudflare en GitHub no tiene permiso sobre el repo de `ValeHernandez-91`.
+Para auto-deploy en cada push, instalar la app de Cloudflare Pages en la cuenta GitHub de Valentina.
+Por ahora, para actualizar el sitio: re-generar el zip y re-subirlo, o conectar Git con Vale.
